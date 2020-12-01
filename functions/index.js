@@ -1,8 +1,8 @@
 const functions = require('firebase-functions');
-const { RestClient } = require("bybit-api")
+const { RestClient } = require("bybit-api");
 
-const API_KEY = "ro7K5Ocq0gdX1StLu3"
-const PRIVATE_KEY = "EmDd1aF7tk4rZRFpv9cTT9Xl7Xyz8i0AUVoi"
+const API_KEY = functions.config.api_key;
+const PRIVATE_KEY = functions.config.private_key;
 
 const client = new RestClient(API_KEY, PRIVATE_KEY);
 
@@ -11,7 +11,7 @@ const client = new RestClient(API_KEY, PRIVATE_KEY);
 exports.alert = functions.region("europe-west1").https.onRequest((request, response) => {
     functions.logger.info(request.body);
     try {
-        if(request.body.side == null){
+        if (request.body.side == null) {
             var orderDetails = JSON.parse(request.body);
         } else {
             var orderDetails = request.body;
