@@ -4,7 +4,8 @@
   "description": "A small serverless function (Firebase) that will execute trades on ByBit based on alerts from TradingView",
   "scripts": {
     "dev": "firebase emulators:start",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "update_keys": "firebase functions:config:set"
   },
   "repository": {
     "type": "git",
