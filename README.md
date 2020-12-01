@@ -22,24 +22,25 @@ To setup this project you will probably need to be mildly comfortable with Fireb
 1. Fork this repo on Github so you can use Github actions for your own deployment.
    
 2. Clone your forked repo to your computer. (Do not clone this repo) Note: If you use 2FA on your GitHub account, you will need to clone the repo through SSH.
-3. Create an API key for your ByBit account. 
+3. Delete `firebase.json` and `.firebaserc` in the root folder, if present.
+4. Create an API key for your ByBit account. 
    [Testnet API Link](https://testnet.bybit.com/app/user/api-management) |
    [Regular API Link](https://www.bybit.com/app/user/api-management) (use at your own risk)
-4. Copy down both the API Key and the Private Key.
-5. Go to the settings of your forked repo and click on "Secrets"
-6. Click on "New repository secret"
-7. Name the first secret as `API_KEY` and enter the API Key from ByBit into the value field.
-8. Repeat this for the private key, naming it `PRIVATE_KEY`
-9.  Run `npm install` in the root directory of the project and in the `functions` directory
-10. Create a new Firebase project in the [Firebase Console](https://console.firebase.google.com/u/0/)
-11. Click on Functions under the Develop heading on the left side bar.
-12. Press "Upgrade project" (this will allow you to use cloud functions in your project)
-13. Proceed through the dialog boxes to upgrade your project (there is very little chance you will be charged for your usage)
-14. Return to your terminal and run `npm install -g firebase-tools` if you have not already installed them.
-15. Now run `firebase init` in the root folder to initialize your Firebase project.
-16. Select `Functions` from the menu. This is the only required feature at this time.
-17. In the next menu, choose `Use an existing project` and select the project you previously created.
-18. ```
+5. Copy down both the API Key and the Private Key.
+6. Go to the settings of your forked repo and click on "Secrets"
+7. Click on "New repository secret"
+8. Name the first secret as `API_KEY` and enter the API Key from ByBit into the value field.
+9. Repeat this for the private key, naming it `PRIVATE_KEY`
+10. Run `npm install` in the root directory of the project and in the `functions` directory
+11. Create a new Firebase project in the [Firebase Console](https://console.firebase.google.com/u/0/)
+12. Click on Functions under the Develop heading on the left side bar.
+13. Press "Upgrade project" (this will allow you to use cloud functions in your project)
+14. Proceed through the dialog boxes to upgrade your project (there is very little chance you will be charged for your usage)
+15. Return to your terminal and run `npm install -g firebase-tools` if you have not already installed them.
+16. Now run `firebase init` in the root folder to initialize your Firebase project.
+17. Select `Functions` from the menu. This is the only required feature at this time.
+18. In the next menu, choose `Use an existing project` and select the project you previously created.
+19. ```
     What language would you like to use to write Cloud Functions? JavaScript
     Do you want to use ESLint to catch probable bugs and enforce style? No
     File functions/package.json already exists. Overwrite? (y/N) n 
@@ -50,18 +51,18 @@ To setup this project you will probably need to be mildly comfortable with Fireb
     Skipping write of functions/.gitignore
     Do you want to install dependencies with npm now? (Y/n) y
     ```
-19. Run `firebase login:ci` and follow the onscreen steps.
-20. Return to your repo's secrets and add the token as `FIREBASE_TOKEN`
+20. Run `firebase login:ci` and follow the onscreen steps.
+21. Return to your repo's secrets and add the token as `FIREBASE_TOKEN`
     - the token should start with `1//` or something similar
-21. Run `git push` to push your changes to your forked repo. 
+22. Run `git push` to push your changes to your forked repo. 
     - Note: If you use 2FA you will need to follow the steps [here](https://www.freecodecamp.org/news/git-ssh-how-to/) to create and add a ssh key so you can push your changes to your forked repo. 
-22. Go to the `Actions` tab of your repo and press the button that says `I understand my workflows, go ahead and enable them`
-23. Click on `CI` and press `Run workflow` and the press the `Run workflow` button in the modal.
-24. If everything goes well, you should now have your Firebase Cloud Function deployed.
-25. Now, go to the Firebase console and go to `Functions`. You should now be able to see your newly created function with a URL that will invoke the function.
-26. Create an alert on TradingView and check the `Webhook URL` checkbox.
-27. Paste the function's URL into the box below the `Webhook URL` checkbox.
-28. In the message field, paste the following code, adjusting the settings according to the table below.
+23. Go to the `Actions` tab of your repo and press the button that says `I understand my workflows, go ahead and enable them`
+24. Click on `CI` and press `Run workflow` and the press the `Run workflow` button in the modal.
+25. If everything goes well, you should now have your Firebase Cloud Function deployed.
+26. Now, go to the Firebase console and go to `Functions`. You should now be able to see your newly created function with a URL that will invoke the function.
+27. Create an alert on TradingView and check the `Webhook URL` checkbox.
+28. Paste the function's URL into the box below the `Webhook URL` checkbox.
+29. In the message field, paste the following code, adjusting the settings according to the table below.
     - ```{"side": "Buy/Sell", "qty": 0, "symbol": {{ticker}}, "price":{{close}}, "leverage": 0, "order_type": "Market/Limit", "take_profit": 0, "stop_loss": 0, "order_link_id": "{{time}}"}```
 
 ---

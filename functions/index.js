@@ -2,8 +2,6 @@ const functions = require('firebase-functions');
 const { RestClient } = require("bybit-api");
 
 
-
-
 exports.alert = functions.region("europe-west1").https.onRequest((request, response) => {
     const API_KEY = functions.config().bybit.api_key;
     const PRIVATE_KEY = functions.config().bybit.private_key;
