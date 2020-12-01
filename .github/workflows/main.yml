@@ -38,12 +38,12 @@ jobs:
           key: node-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Install requesite packages
-        if: steps.packages-general.outputs.cache-hit != "true"
+        if: steps.packages-general.outputs.cache-hit != 'true'
         working-directory: ./
         run: npm install
       
       - name: Install packages for firebase functions
-        if: steps.packages-functions.outputs.cache-hit != "true"
+        if: steps.packages-functions.outputs.cache-hit != 'true'
         working-directory: ./functions
         run: npm install
       
