@@ -33,10 +33,9 @@ jobs:
       - name: Retrieve npm cache for functions packages
         uses: actions/cache@v2
         id: packages-functions
-        working-directory: ./functions
         with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          path: ./functions/node_modules
+          key: node-modules-${{ hashFiles('./functions/package-lock.json') }}
 
       - name: Install requesite packages
         if: steps.packages-general.outputs.cache-hit != 'true'
