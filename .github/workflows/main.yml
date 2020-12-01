@@ -33,4 +33,5 @@ jobs:
         run: npm install
       
       - name: Deploy to Firebase
-        run: npm run deploy
+        working-directory: ./
+        run: npm run deploy -- --token=${{secrets.FIREBASE_TOKEN}}
