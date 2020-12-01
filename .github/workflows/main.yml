@@ -25,7 +25,7 @@ jobs:
       - name: Retrieve npm cache (if any)
         uses: actions/cache@v1
         with:
-          path: ~/.npm
+          path: **/node_modules
           key: npm-packages
 
       # Runs a single command using the runners shell
@@ -38,7 +38,7 @@ jobs:
         run: npm install
       
       - name: Convert GitHub Secrets to Firebase Environment Variables
-        run: npm run update_keys -- api_key=${{secrets.API_KEY}} private_key=${{secrets.PRIVATE_KEY}}
+        run: npm run update_keys -- api_key=${{secrets.API_KEY}} private_key=${{secrets.PRIVATE_KEY}} --token=${{secrets.FIREBASE_TOKEN}}
       
       - name: Deploy to Firebase
         working-directory: ./
