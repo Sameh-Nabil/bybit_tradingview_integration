@@ -26,7 +26,6 @@ jobs:
       - name: Retrieve npm cache for general packages
         uses: actions/cache@v2
         id: packages-general
-        uses: actions/cache@v1
         with:
           path: ./node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
@@ -34,7 +33,6 @@ jobs:
       - name: Retrieve npm cache for functions packages
         uses: actions/cache@v2
         id: packages-functions
-        uses: actions/cache@v1
         with:
           path: ./functions/node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
