@@ -22,18 +22,30 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Retrieve npm cache (if any)
+      - name: Retrieve npm cache for general packages
+        id: packages-general
+        working-directory: ./
         uses: actions/cache@v1
         with:
-          path: ./**/node_modules
-          key: npm-packages
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
 
-      # Runs a single command using the runners shell
+      - uses: actions/checkout@v2
+      - name: Retrieve npm cache for functions packages
+        id: packages-functions
+        working-directory: ./functions
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
       - name: Install requesite packages
+        if: steps.packages-general.outputs.cache-hit != "true"
         working-directory: ./
         run: npm install
       
       - name: Install packages for firebase functions
+        if: steps.packages-functions.outputs.cache-hit != "true"
         working-directory: ./functions
         run: npm install
       
