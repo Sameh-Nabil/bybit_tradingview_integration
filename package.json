@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/adahl5/bybit_tradingview_integration/issues"
   },
-  "homepage": "https://github.com/adahl5/bybit_tradingview_integration#readme"
+  "homepage": "https://github.com/adahl5/bybit_tradingview_integration#readme",
+  "dependencies": {"firebase-tools": "^8.16.2"}
 }
