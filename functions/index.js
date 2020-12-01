@@ -29,8 +29,8 @@ exports.alert = functions.region("europe-west1").https.onRequest((request, respo
 })
 
 const createOrder = ({ details, response, client }) => {
-    const orderDetails = { side: details.side, symbol: "BTCUSD", order_type: "Market", qty: details.qty, time_in_force: "ImmediateOrCancel", take_profit: (details.price + details.take_profit), stop_loss: (details.price + details.stop_loss), order_link_id: details.order_link_id }
-    client.changeUserLeverage({ symbol: "BTCUSD", leverage: 100 }).then((res) => {
+    const orderDetails = { side: details.side, symbol: details.symbol, leverage: details.leverage, order_type: details.order_type, qty: details.qty, time_in_force: "ImmediateOrCancel", take_profit: (details.price + details.take_profit), stop_loss: (details.price + details.stop_loss), order_link_id: details.order_link_id }
+    client.changeUserLeverage({ symbol: orderDetails.symbol, leverage: orderDetails.leverage }).then((res) => {
         console.log(res);
         client.placeActiveOrder(orderDetails).then((res) => {
             console.log(res);
