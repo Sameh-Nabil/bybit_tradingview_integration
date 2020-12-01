@@ -1,8 +1,8 @@
 const functions = require('firebase-functions');
 const { RestClient } = require("bybit-api");
 
-const API_KEY = functions.config.api_key;
-const PRIVATE_KEY = functions.config.private_key;
+const API_KEY = functions.config.bybit.api_key;
+const PRIVATE_KEY = functions.config.bybit.private_key;
 
 const client = new RestClient(API_KEY, PRIVATE_KEY);
 
