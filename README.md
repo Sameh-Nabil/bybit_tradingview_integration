@@ -11,8 +11,8 @@ Also, this is my first open-source project, so there will probably be many issue
 ## **Requirements**
 - NodeJS v12+
 - latest firebase-tools
-- A ByBit account (note: if you are in the US you will need to use a VPN)
-- A paid TradingView account (to use Webhooks)
+- A ByBit account (note: if you are in the US you will need to use a VPN based in a different country. You can view restricted countries [here](https://help.bybit.com/hc/en-us/articles/360039750013-Service-Restricted-Countries))
+- A paid TradingView account (to use Webhooks) | [Referral link](https://www.tradingview.com/gopro/?share_your_love=adahl5)
 
 ---
 
