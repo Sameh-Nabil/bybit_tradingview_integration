@@ -1,14 +1,15 @@
 const functions = require('firebase-functions');
 const { RestClient } = require("bybit-api");
 
-const API_KEY = functions.config["bybit"]["api_key"];
-const PRIVATE_KEY = functions.config["bybit"]["private_key"];
-
-const client = new RestClient(API_KEY, PRIVATE_KEY);
 
 
 
 exports.alert = functions.region("europe-west1").https.onRequest((request, response) => {
+    const API_KEY = functions.config().bybit.api_key;
+    const PRIVATE_KEY = functions.config().bybit.private_key;
+
+    const client = new RestClient(API_KEY, PRIVATE_KEY);
+
     functions.logger.info(request.body);
     try {
         if (request.body.side == null) {
@@ -22,12 +23,12 @@ exports.alert = functions.region("europe-west1").https.onRequest((request, respo
         response.send(`Error: ${err}`)
         return;
     }
-    createOrder({ details: orderDetails, response: response });
+    createOrder({ details: orderDetails, response: response, client:client });
 
 
 })
 
-const createOrder = ({ details, response }) => {
+const createOrder = ({ details, response, client }) => {
     const orderDetails = { side: details.side, symbol: "BTCUSD", order_type: "Market", qty: details.qty, time_in_force: "ImmediateOrCancel", take_profit: (details.price + details.take_profit), stop_loss: (details.price + details.stop_loss), order_link_id: details.order_link_id }
     client.changeUserLeverage({ symbol: "BTCUSD", leverage: 100 }).then((res) => {
         console.log(res);
