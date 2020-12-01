@@ -1,0 +1,19 @@
+{
+  "name": "bybit_tradingview_integration",
+  "version": "1.0.0",
+  "description": "A small serverless function (Firebase) that will execute trades on ByBit based on alerts from TradingView",
+  "scripts": {
+    "dev": "firebase emulators:start",
+    "deploy": "firebase deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adahl5/bybit_tradingview_integration.git"
+  },
+  "author": "adahl5",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adahl5/bybit_tradingview_integration/issues"
+  },
+  "homepage": "https://github.com/adahl5/bybit_tradingview_integration#readme"
+}
